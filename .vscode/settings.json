@@ -1,0 +1,22 @@
+{
+    "cSpell.words": [
+        "Antifungales",
+        "categoria",
+        "Eloquent",
+        "endsection",
+        "Factories",
+        "faqs",
+        "listjs",
+        "onepage",
+        "zink"
+    ],
+    "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+    "php.suggest.basic": false,
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+    "a-file-icon-vscode.folderTheme": "none",
+    "[php]": {
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+    }
+}
