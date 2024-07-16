@@ -87,18 +87,26 @@ class FacturaCompraController extends Controller
             ->with('success', 'FacturaCompra eliminada exitosamente.');
     }
   /** save record factura */  
-  public function saveRecordFactura(Request $request): RedirectResponse
-  {
-      $facturaCompra = new FacturaCompra();
-      $facturaCompra->numero_factura = $request->numero_factura;
-      $facturaCompra->fecha_factura = $request->fecha_factura;
-      $facturaCompra->envio_id = $request->envio_id;
-      $facturaCompra->total_factura = $request->total_factura;
-      $facturaCompra->proveedor = $request->proveedor;
-      $facturaCompra->save();
+public function saveRecordFactura(Request $request): RedirectResponse
+{
+    $request->validate([
+        'numero_factura' => 'required|string|max:255',
+        'fecha_factura' => 'required|date_format:Y-m-d',
+        'envio_id' => 'required|string|max:255',
+        'total_factura' => 'required|numeric',
+        'proveedor' => 'required|string|max:255',
+    ]);
 
-      return redirect()->route('factura-compra.index')
-          ->with('success', 'Factura creada exitosamente.');
-  }
+    $facturaCompra = new FacturaCompra();
+    $facturaCompra->numero_factura = $request->numero_factura;
+    $facturaCompra->fecha_factura = $request->fecha_factura; // Asegurarse de que la fecha esté en formato Y-m-d
+    $facturaCompra->envio_id = $request->envio_id;
+    $facturaCompra->total_factura = $request->total_factura;
+    $facturaCompra->proveedor = $request->proveedor;
+    $facturaCompra->save();
+
+    return redirect()->route('factura-compra.index')
+        ->with('success', 'Factura creada exitosamente.');
+}
   
 }
